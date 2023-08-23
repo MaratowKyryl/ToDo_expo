@@ -5,7 +5,9 @@ import Header from './src/header/Header';
 export default function App() {
   return (
     <View style={styles.container}>
+      <View style={styles.content}>
       <Header />
+      </View>
     </View>
   );
 }
@@ -13,8 +15,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'lightgray',
     alignItems: 'center',
-    justifyContent: 'center',
   },
+  content: {
+    width: '60%',
+  }
 });
