@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import {StyleSheet, TextInput, View, Pressable, Text, Alert} from 'react-native';
+import { StyleSheet, TextInput, View, Pressable, Text } from 'react-native';
 
 export default function NewTaskInput() {
   const [search, setSearch] = useState('');
 
-  const onSubmit = (event) => {
-    console.log(event);
-  }
+  const onSubmit = (event) => {};
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.searchInput} value={search} onChangeText={(search) => setSearch(search)} returnKeyType={'done'} onSubmitEditing={onSubmit} />
-      <Pressable onPress={() => alert(search)} style={styles.searchButton}>
+      <TextInput
+        style={styles.searchInput}
+        value={search}
+        onChangeText={(search) => setSearch(search)}
+        returnKeyType={'done'}
+        onSubmitEditing={onSubmit}
+      />
+      <Pressable onPress={() => {}} style={styles.searchButton}>
         <Text>Search</Text>
       </Pressable>
     </View>
@@ -43,5 +47,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
     borderWidth: '1px',
     borderColor: 'gray',
-  }
+  },
 });

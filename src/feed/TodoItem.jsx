@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 
-export default function TodoItem({todo}) {
+export default function TodoItem({ todo }) {
   const [isFavorite, setIsFavorite] = useState(todo.isFavorite);
 
   return (
@@ -22,13 +22,13 @@ const getImageStyles = (isFavorite) => {
       width: 20,
       height: 20,
       tintColor: 'yellow',
-    }
+    };
   }
-    return {
-      width: 20,
-      height: 20,
-    }
-}
+  return {
+    width: 20,
+    height: 20,
+  };
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Constants from "../../common/utils/Constants";
-import Colors from "../../common/utils/Colors";
-import {getCurrentDateString} from "../../common/utils/time";
-import {useTodoItemStore} from "../../feed/store";
+import Constants from '../../common/utils/Constants';
+import Colors from '../../common/utils/Colors';
+import { getCurrentDateString } from '../../common/utils/time';
+import { useTodoItemStore } from '../../feed/store';
 
 export default function Header() {
   const date = new Date();
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     color: Colors.secondaryTextGray,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

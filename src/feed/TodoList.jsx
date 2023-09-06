@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import TodoItem from "./TodoItem";
-import {useTodoItemStore} from "./store";
+import TodoItem from './TodoItem';
+import { useTodoItemStore } from './store';
 
 export default function TodoList() {
-  const {todos, fetchTodos} = useTodoItemStore();
+  const { todos, fetchTodos } = useTodoItemStore();
 
   useEffect(async () => {
     if (!todos) {
       await fetchTodos();
     }
-  }, [])
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.separator} />
@@ -30,5 +30,5 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 10,
     backgroundColor: 'gray',
-  }
+  },
 });
