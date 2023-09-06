@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Constants from '../../common/utils/Constants';
-import Colors from '../../common/utils/Colors';
-import { getCurrentDateString } from '../../common/utils/time';
-import { useTodoItemStore } from '../../feed/store';
+
+import Colors from '$colors';
+import { getCurrentDateString } from '$commonUtils/time';
+import Constants from '$constants';
 
 export default function Header() {
   const date = new Date();

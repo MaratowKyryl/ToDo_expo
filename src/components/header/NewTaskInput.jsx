@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
+
+import Colors from '$colors';
 
 export default function NewTaskInput() {
   const [search, setSearch] = useState('');
@@ -15,9 +17,6 @@ export default function NewTaskInput() {
         returnKeyType={'done'}
         onSubmitEditing={onSubmit}
       />
-      <Pressable onPress={() => {}} style={styles.searchButton}>
-        <Text>Search</Text>
-      </Pressable>
     </View>
   );
 }
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: '90%',
     borderRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: Colors.activeItem,
   },
   searchButton: {
     height: 30,

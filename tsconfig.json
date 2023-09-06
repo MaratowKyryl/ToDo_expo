@@ -1,4 +1,12 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "paths": {
+      "$colors": ["./src/common/utils/Colors.ts"],
+      "$constants": ["./src/common/utils/Constants.ts"],
+      "$globalStyles": ["./src/common/utils/GlobalStyles.ts"],
+      "$components/*": ["./src/components/*"],
+      "commonUtils/*": ["./src/common/utils/*"],
+    }
+  },
   "extends": "@tsconfig/react-native/tsconfig.json"
 }

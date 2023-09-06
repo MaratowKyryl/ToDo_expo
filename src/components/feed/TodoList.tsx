@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
+
+import { TodoState, useTodoItemStore } from './store';
 import TodoItem from './TodoItem';
-import { useTodoItemStore } from './store';
 
 export default function TodoList() {
-  const { todos, fetchTodos } = useTodoItemStore();
+  const { todos, fetchTodos } = useTodoItemStore<TodoState>((state) => state);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!todos) {
-      await fetchTodos();
+      fetchTodos('https://jsonplaceholder.typicode.com/todos');
     }
   }, []);
   return (

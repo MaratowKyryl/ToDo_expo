@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-export default function TodoItem({ todo }) {
-  const [isFavorite, setIsFavorite] = useState(todo.isFavorite);
+import { ITodoItem } from '$components/feed/models';
+
+export default function TodoItem({ todo }: { todo: ITodoItem }) {
+  const [isFavorite, setIsFavorite] = useState(todo.isPinned);
 
   return (
     <View style={styles.container}>
       <Text>{todo.title}</Text>
       <View>
         <Pressable onPress={() => setIsFavorite(!isFavorite)}>
-          <Image source={require('../../assets/star.png')} style={getImageStyles(isFavorite)} />
+          <Image source={require('../../../assets/star.png')} style={getImageStyles(isFavorite)} />
         </Pressable>
       </View>
     </View>
