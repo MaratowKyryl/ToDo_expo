@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, Pressable, Text } from 'react-native';
+import {StyleSheet, TextInput, View, Pressable, Text, Alert} from 'react-native';
 
-export default function SearchInput() {
+export default function NewTaskInput() {
   const [search, setSearch] = useState('');
+
+  const onSubmit = (event) => {
+    console.log(event);
+  }
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.searchInput} value={search} onChangeText={(search) => setSearch(search)} />
+      <TextInput style={styles.searchInput} value={search} onChangeText={(search) => setSearch(search)} returnKeyType={'done'} onSubmitEditing={onSubmit} />
       <Pressable onPress={() => alert(search)} style={styles.searchButton}>
         <Text>Search</Text>
       </Pressable>

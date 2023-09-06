@@ -1,12 +1,15 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import Header from './src/components/header/Header';
 import TodoList from "./src/feed/TodoList";
+import Colors from './src/common/utils/Colors';
+import NewTaskInput from "./src/components/header/NewTaskInput";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <Header />
+        <NewTaskInput />
         <TodoList />
       </View>
     </View>
@@ -17,10 +20,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
-    backgroundColor: 'lightgray',
+    backgroundColor: Colors.appBackground,
     alignItems: 'center',
   },
   content: {
-    width: '60%',
+    flex: 1,
+    width: Platform.OS === 'web' ? '60%' : '90%',
   }
 });
