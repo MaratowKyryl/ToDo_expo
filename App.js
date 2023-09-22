@@ -1,9 +1,9 @@
 import { Platform, StyleSheet, View } from 'react-native';
 
-import Colors from '$colors';
-import TodoList from '$components/feed/TodoList';
-import Header from '$components/header/Header';
-import NewTaskInput from '$components/header/NewTaskInput';
+import Colors from './src/common/utils/Colors';
+import TodoList from './src/components/feed/TodoList';
+import Header from './src/components/header/Header';
+import NewTaskInput from './src/components/header/NewTaskInput';
 
 export default function App() {
   return (

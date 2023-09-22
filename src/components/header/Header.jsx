@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Colors from '$colors';
-import { getCurrentDateString } from '$commonUtils/time';
-import Constants from '$constants';
+import Colors from '../../common/utils/Colors';
+import Constants from '../../common/utils/Constants';
+import { getCurrentDateString } from '../../common/utils/time';
 
 export default function Header() {
   const date = new Date();

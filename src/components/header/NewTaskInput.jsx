@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-import Colors from '$colors';
+import Colors from '../../common/utils/Colors';
 
 export default function NewTaskInput() {
   const [search, setSearch] = useState('');
