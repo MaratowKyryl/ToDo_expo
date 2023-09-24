@@ -1,48 +1,50 @@
 import React, { useState } from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Checkbox from 'expo-checkbox';
 
-import { ITodoItem } from '$components/feed/models';
+import AppCheckbox from '../../common/components/AppCheckbox';
+import Colors from '../../common/utils/Colors';
+import { ITodoItem } from './models';
 
 export default function TodoItem({ todo }: { todo: ITodoItem }) {
-  const [isFavorite, setIsFavorite] = useState(todo.isPinned);
+  const [isCompleted, setIsCompleted] = useState(todo.completed);
 
   return (
     <View style={styles.container}>
-      <Text>{todo.title}</Text>
+      <AppCheckbox
+        onChange={() => setIsCompleted(!isCompleted)}
+        checked={isCompleted}
+        inactiveButtonStyle={styles.checkbox}
+        activeButtonStyle={styles.checkbox}
+      />
       <View>
-        <Pressable onPress={() => setIsFavorite(!isFavorite)}>
-          <Image source={require('../../../assets/star.png')} style={getImageStyles(isFavorite)} />
-        </Pressable>
+        <Text style={styles.todoTitle}>{todo.title}</Text>
+        {todo.memo ? <Text style={styles.todoMemo}>{todo.memo}</Text> : null}
       </View>
     </View>
   );
 }
 
-const getImageStyles = (isFavorite) => {
-  if (isFavorite) {
-    return {
-      width: 20,
-      height: 20,
-      tintColor: 'yellow',
-    };
-  }
-  return {
-    width: 20,
-    height: 20,
-  };
-};
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: 'white',
     height: 50,
-    marginTop: 20,
+    marginTop: 10,
     padding: 10,
-    justifyContent: 'space-between',
     alignItems: 'center',
-    borderRadius: 10,
+  },
+  checkbox: {
+    width: 24,
+    height: 24,
+    marginRight: 10,
+    color: Colors.appBackground,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: Colors.borderColor,
+  },
+  todoTitle: {
+    color: Colors.textWhite,
+  },
+  todoMemo: {
+    color: Colors.secondaryTextGray,
   },
 });

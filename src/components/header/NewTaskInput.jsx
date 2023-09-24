@@ -9,7 +9,9 @@ import Strings from '../../common/utils/Strings';
 export default function NewTaskInput() {
   const [search, setSearch] = useState('');
 
-  const onSubmit = (event) => {};
+  const onSubmit = (event) => {
+    console.log('onSubmit', event.nativeEvent.text);
+  };
 
   return (
     <View style={styles.container}>
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     padding: 10,
+    marginBottom: 10,
     height: 40,
     width: '100%',
     borderRadius: 5,

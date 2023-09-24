@@ -1,14 +1,14 @@
 export const todos = [
   {
     title: 'Learn React',
-    completed: false,
-    isPinned: true,
+    completed: true,
+    isPinned: false,
     memo: null,
   },
   {
     title: 'Learn Redux',
     completed: false,
-    isPinned: false,
+    isPinned: true,
     memo: 'Test',
   },
   {
