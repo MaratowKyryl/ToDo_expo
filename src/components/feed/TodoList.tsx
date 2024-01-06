@@ -6,13 +6,8 @@ import { TodoState, useTodoItemStore } from './store';
 import TodoItem from './TodoItem';
 
 export default function TodoList() {
-  const { todos, pinnedTodos, fetchTodos } = useTodoItemStore<TodoState>((state) => state);
+  const { todos, pinnedTodos } = useTodoItemStore<TodoState>((state) => state);
 
-  useEffect(() => {
-    if (!todos) {
-      fetchTodos('https://jsonplaceholder.typicode.com/todos');
-    }
-  }, []);
   return (
     <View style={styles.container}>
       <ScrollView>
