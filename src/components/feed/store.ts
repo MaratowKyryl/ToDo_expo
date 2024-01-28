@@ -10,6 +10,7 @@ export interface TodoState {
   setTodos: (data: ITodoItem[]) => void;
   updateTodos: (todo: ITodoItem) => void;
   addTodo: (text: string) => void;
+  deleteTodoItem: (todo: ITodoItem) => void;
 }
 
 export const useTodoItemStore = create<TodoState>((set) => ({
@@ -62,5 +63,18 @@ export const useTodoItemStore = create<TodoState>((set) => ({
       AsyncStorage.setItem(Constants.TODOS_STORAGE_KEY, JSON.stringify([...pinnedTodos, ...updatedTodos]));
 
       return { pinnedTodos: state.pinnedTodos, todos: updatedTodos };
+    }),
+
+  deleteTodoItem: (todo: ITodoItem) =>
+    set((state) => {
+      const updatedTodos = state.todos?.filter((item) => item.id !== todo.id);
+      const updatedPinnedTodos = state.pinnedTodos?.filter((item) => item.id !== todo.id);
+
+      AsyncStorage.setItem(
+        Constants.TODOS_STORAGE_KEY,
+        JSON.stringify([...(updatedPinnedTodos ?? []), ...(updatedTodos ?? [])]),
+      );
+
+      return { pinnedTodos: updatedPinnedTodos, todos: updatedTodos };
     }),
 }));
