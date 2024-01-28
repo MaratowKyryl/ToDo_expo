@@ -5,14 +5,21 @@ import Checkbox from 'expo-checkbox';
 import AppCheckbox from '../../common/components/AppCheckbox';
 import Colors from '../../common/utils/Colors';
 import { ITodoItem } from './models';
+import { TodoState, useTodoItemStore } from './store';
 
 export default function TodoItem({ todo }: { todo: ITodoItem }) {
+  const { updateTodos } = useTodoItemStore<TodoState>((state) => state);
   const [isCompleted, setIsCompleted] = useState(todo.completed);
+
+  const setIsTaskCompleted = () => {
+    updateTodos({ ...todo, completed: !isCompleted });
+    setIsCompleted(!isCompleted);
+  };
 
   return (
     <View style={styles.container}>
       <AppCheckbox
-        onChange={() => setIsCompleted(!isCompleted)}
+        onChange={setIsTaskCompleted}
         checked={isCompleted}
         inactiveButtonStyle={styles.checkbox}
         activeButtonStyle={styles.checkbox}

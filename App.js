@@ -1,29 +1,29 @@
 import React, { useEffect } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 
+import * as AsyncStorageUtil from './src/common/utils/AsyncStorage';
 import Colors from './src/common/utils/Colors';
+import Constants from './src/common/utils/Constants';
+import { useTodoItemStore } from './src/components/feed/store';
 import TodoList from './src/components/feed/TodoList';
 import Header from './src/components/header/Header';
 import NewTaskInput from './src/components/header/NewTaskInput';
-import * as AsyncStorage from "./src/common/utils/AsyncStorage";
-import Constants from "./src/common/utils/Constants";
-import {TodoState, useTodoItemStore} from "./src/components/feed/store";
 
 export default function App() {
-
   const { setTodos } = useTodoItemStore((state) => state);
 
-  useEffect( () => {
-    async function init(){
-      let todos = await AsyncStorage.getObjectValue(Constants.TODOS_STORAGE_KEY);
+  useEffect(() => {
+    async function init() {
+      let todos = await AsyncStorageUtil.getObjectValue(Constants.TODOS_STORAGE_KEY);
 
       if (!todos) {
         console.log('set dummy todos');
-        await AsyncStorage.setObjectValue(Constants.TODOS_STORAGE_KEY, Constants.DUMMY_TODOS);
-        todos = await AsyncStorage.getObjectValue(Constants.TODOS_STORAGE_KEY);
+        await AsyncStorageUtil.setObjectValue(Constants.TODOS_STORAGE_KEY, Constants.DUMMY_TODOS);
+        todos = await AsyncStorageUtil.getObjectValue(Constants.TODOS_STORAGE_KEY);
       }
 
-      setTodos(todos);
+      console.log(todos);
+      setTodos(todos || []);
     }
 
     init();
