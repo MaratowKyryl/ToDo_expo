@@ -9,6 +9,7 @@ export interface TodoState {
   todos: ITodoItem[] | null;
   setTodos: (data: ITodoItem[]) => void;
   updateTodos: (todo: ITodoItem) => void;
+  addTodo: (text: string) => void;
 }
 
 export const useTodoItemStore = create<TodoState>((set) => ({
@@ -21,6 +22,7 @@ export const useTodoItemStore = create<TodoState>((set) => ({
     const regularTodos = data.filter((todo) => !todo.isPinned);
     set({ pinnedTodos: pinnedTodos, todos: regularTodos });
   },
+
   updateTodos: (newTodo: ITodoItem) =>
     set((state) => {
       const id = newTodo.id;
@@ -43,5 +45,22 @@ export const useTodoItemStore = create<TodoState>((set) => ({
 
       AsyncStorage.setItem(Constants.TODOS_STORAGE_KEY, JSON.stringify([...updatedPinnedTodos, ...updatedTodos]));
       return { pinnedTodos: updatedPinnedTodos, todos: updatedTodos };
+    }),
+
+  addTodo: (text: string) =>
+    set((state) => {
+      const newTodo: ITodoItem = {
+        id: Math.random(),
+        title: text,
+        isPinned: false,
+        completed: false,
+        memo: null,
+      };
+
+      const updatedTodos = state.todos && state.todos.length ? [...state.todos, newTodo] : [newTodo];
+      const pinnedTodos = state.pinnedTodos ?? [];
+      AsyncStorage.setItem(Constants.TODOS_STORAGE_KEY, JSON.stringify([...pinnedTodos, ...updatedTodos]));
+
+      return { pinnedTodos: state.pinnedTodos, todos: updatedTodos };
     }),
 }));

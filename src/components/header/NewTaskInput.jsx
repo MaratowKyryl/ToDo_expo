@@ -5,12 +5,15 @@ import { Entypo } from '@expo/vector-icons';
 import AppTextInput from '../../common/components/AppTextInput';
 import Colors from '../../common/utils/Colors';
 import Strings from '../../common/utils/Strings';
+import { useTodoItemStore } from '../feed/store';
 
 export default function NewTaskInput() {
+  const { addTodo } = useTodoItemStore();
   const [search, setSearch] = useState('');
 
   const onSubmit = (event) => {
-    console.log('onSubmit', event.nativeEvent.text);
+    addTodo(event.nativeEvent.text);
+    setSearch('');
   };
 
   return (
